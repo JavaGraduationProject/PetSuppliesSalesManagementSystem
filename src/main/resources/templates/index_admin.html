@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords"
+          content="bootstrap admin template, admin template ,admin panel template ,bootstrap 4 admin template ,bootstrap admin ,admin dashboard template ,bootstrap admin panel ,bitcoin dashboard ,crypto dashboard ,btc dashboard ,cryptocurrency dashboard ,bitcoin template ,cryptocurrency template ,crypto template ,cryptocurrency dashboard template ,cryptocurrency admin template ,crypto admin template ,btconline dashboard ,ryptocurrency dashboard template ,crypto admin template ,crypto trading dashboard ,cryptocurrency admin template "/>
+
+    <title>萌多宠物用品网上销售系统</title>
+    <link rel="stylesheet" href="/front/css/style.css">
+    <script src="/front/js/echarts.min.js"></script>
+</head>
+<body>
+<div id="loading">
+    <div id="loading-center"></div>
+</div>
+<div class="wrapper">
+
+    <!--左侧导航栏-->
+    <div th:include="template :: main-sidebar-admin"></div>
+
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+
+        <div th:include="template :: main-header-admin"></div>
+
+        <div class="container-fluid">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">营业额</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <div class="selbox d-flex" style="">
+                        <div class="form1">
+                            <ul class="row">
+                                <li class="col-xs-4"><span>&nbsp;&nbsp;年&nbsp;&nbsp;：</span>
+                                    <select id="searchYear" name="searchYear">
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </li>
+                                <li class="col-xs-4"><span>&nbsp;&nbsp;月&nbsp;&nbsp;：</span>
+                                    <select id="searchMonth" name="searchMonth">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </li>
+                                <li class="col-xs-4" style="padding-left: 10px">
+                                    <button class="btn btn-info btn-sm" onclick="searchByName()">查询</button>
+                                </li>
+                                <!--                                <li class="col-xs-4" style="padding-left: 10px">-->
+                                <!--                                    <a href="javascript:;" class="btn btn-primary">答题记录管理</a>-->
+                                <!--                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tablebox">
+                        <div class="d-flex">
+                            <div>
+                                <span style="font-size: 24px"><strong>销量(数量：[[${result.totalAmount}]])</strong></span><br>
+                                <div id="main" style="width: 600px;height:400px;"></div>
+                            </div>
+                            <div>
+                                <span style="font-size: 24px"><strong>营业额（总计：[[${result.totalMoney}]] 元）</strong></span><br>
+                                <div id="main2" style="width: 600px;height:400px;"></div>
+                            </div>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var myChart = echarts.init(document.getElementById('main'));
+                                // 指定图表的配置项和数据
+                                var option = {
+                                    title: {
+                                        // text: '销量[[${result.totalAmount}]]'
+                                    },
+                                    tooltip: {},
+                                    legend: {},
+                                    xAxis: {
+                                        data: ["狗狗用品", "猫咪用品","萌宠周边"]
+                                    },
+                                    yAxis: {},
+                                    series: [{
+                                        name: '销量（单位：个）',
+                                        type: 'bar',
+                                        data: [
+                                            {value: [[${result.totalAmount1}]]},
+                                            {value: [[${result.totalAmount2}]]},
+                                            {value: [[${result.totalAmount3}]]},
+                                        ]
+                                    }]
+                                };
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
+
+                                var chartDom = document.getElementById('main2');
+                                var myChart = echarts.init(chartDom);
+                                var option;
+                                option = {
+                                    title: {
+                                        // text: '营业额（总计：[[${result.totalMoney}]] 元）'
+                                        // text: '营业额'
+                                    },
+                                    tooltip: {
+                                        trigger: 'item'
+                                    },
+                                    legend: {},
+                                    series: [
+                                        {
+                                            name: '营业额（单位：￥）',
+                                            type: 'pie',
+                                            radius: ['40%', '70%'],
+                                            avoidLabelOverlap: false,
+                                            label: {
+                                                show: false,
+                                                position: 'center'
+                                            },
+                                            emphasis: {
+                                                label: {
+
+                                                    show: true,
+                                                    fontSize: '30',
+                                                    fontWeight: 'bold'
+                                                }
+                                            },
+                                            labelLine: {
+                                                show: false
+                                            },
+                                            data: [
+                                                {value: [[${result.totalMoney1}]], name: '狗狗用品'},
+                                                {value: [[${result.totalMoney2}]], name: '猫咪用品'},
+                                                {value: [[${result.totalMoney3}]], name: '萌宠周边'},
+                                            ]
+                                        }
+                                    ]
+                                };
+                                option && myChart.setOption(option);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:include="template :: footer-admin"></div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function searchByName() {
+        location.href = "/admin/index?searchYear=" + $("#searchYear").val() + "&searchMonth=" + $("#searchMonth").val()
+    }
+
+    window.onload = function () {
+        $("#searchYear").val([[${result.searchYear}]]);
+        $("#searchMonth").val([[${result.searchMonth}]]);
+    }
+</script>
+
+<script src="/front/js/jquery.min.js" type="text/javascript"></script>
+<script src="/front/js/jquery.min.js"></script>
+<script src="/front/js/bootstrap.min.js"></script>
+<script src="/front/js/smooth-scrollbar.js"></script>
+<script src="/front/js/custom.js"></script>
+<script src="/front/laydate/laydate.js"></script>
+<script>
+    lay('#version').html('-v' + laydate.v);
+    laydate.render({
+        elem: '#date'
+        , range: true
+        , theme: '#2c9eae'
+    });
+</script>
+</body>
+</html>

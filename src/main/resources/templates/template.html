@@ -1,0 +1,230 @@
+<!--用户端-->
+<!--左侧导航栏-->
+<div th:fragment="main-sidebar-user" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="iq-sidebar">
+        <div class="iq-sidebar-logo d-flex justify-content-between">
+            <a href="/user/index">
+                <span>用户端</span>
+            </a>
+        </div>
+        <div id="sidebar-scrollbar">
+            <nav class="iq-sidebar-menu">
+                <ul class="iq-menu">
+                    <li>
+                        <a href="/user/index" class="iq-waves-effect"><i class="ri-home-8-fill"></i><span>首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-bar-chart-2-fill"></i><span>购买商品</span><i
+                                class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                        <ul class="iq-submenu">
+                            <li><a href="/user/queryInformation?category=1">狗狗用品</a></li>
+                            <li><a href="/user/queryInformation?category=2">猫咪用品</a></li>
+                            <li><a href="/user/queryInformation?category=3">萌宠周边</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/user/queryCollection" class="iq-waves-effect"><i
+                                class="ri-folder-5-fill"></i><span>收&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;藏</span></a>
+                    </li>
+                    <li>
+                        <a href="/user/queryCart" class="iq-waves-effect"><i
+                                class="ri-shopping-cart-fill"></i><span>购&nbsp;&nbsp;物&nbsp;&nbsp;车</span></a>
+                    </li>
+                    <li>
+                        <a href="/user/queryGroup" class="iq-waves-effect"><i
+                                class="ri-apps-fill"></i><span>团&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购</span></a>
+                    </li>
+                    <li>
+                        <a href="/user/queryOrder" class="iq-waves-effect"><i
+                                class="ri-order-play-fill"></i><span>订单管理</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-3"></div>
+        </div>
+    </div>
+</div>
+<!--用户端-->
+<!--右侧顶部标题栏-->
+<div th:fragment="main-header-user">
+    <div class="iq-top-navbar">
+        <div class="iq-navbar-custom">
+
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <div class="iq-search-bar">
+                    <h3>萌多宠物用品网上销售系统</h3>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                </div>
+                <ul class="navbar-list">
+                    <li>
+                        <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+                            <div class="caption">
+                                <h6 class="mb-0 line-height"><span sec:authentication="principal.username"></span></h6>
+                                <span class="font-size-12">用户</span>
+                            </div>
+                        </a>
+                        <div class="iq-sub-dropdown iq-user-dropdown">
+                            <div class="iq-card shadow-none m-0">
+                                <div class="iq-card-body p-0 ">
+                                    <div class="bg-primary p-3">
+                                        <h5 class="mb-0 text-white line-height">你好-<span sec:authentication="principal.username"></span></h5>
+                                    </div>
+                                    <a href="/user/mine" class="iq-sub-card iq-bg-primary-hover">
+                                        <div class="media align-items-center">
+                                            <div class="rounded iq-card-icon iq-bg-primary">
+                                                <i class="ri-file-user-line"></i>
+                                            </div>
+                                            <div class="media-body ml-3">
+                                                <h6 class="mb-0 ">个人中心</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="d-inline-block w-100 text-center p-3">
+                                        <a class="bg-primary iq-sign-btn" href="/logout" role="button">退出登录<i
+                                                class="ri-login-box-line ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!--用户端-->
+<!--右侧顶部标题栏-->
+<div th:fragment="footer-user">
+    <footer class="bg-white iq-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-right">
+                     2022 @<a href="#">萌多宠物用品网上销售系统</a> 版权所有
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!--管理端-->
+<!--左侧导航栏-->
+<div th:fragment="main-sidebar-admin">
+    <div class="iq-sidebar">
+        <div class="iq-sidebar-logo d-flex justify-content-between">
+            <a href="/admin/index">
+                <span>管理端</span>
+            </a>
+        </div>
+        <div id="sidebar-scrollbar">
+            <nav class="iq-sidebar-menu">
+                <ul class="iq-menu">
+                    <li>
+                        <a href="/admin/index" class="iq-waves-effect"><i class="ri-home-8-fill"></i><span>首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-bar-chart-2-fill"></i><span>发布商品</span><i
+                                class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                        <ul class="iq-submenu">
+                            <li><a href="/admin/queryInformation?category=1">狗狗用品</a></li>
+                            <li><a href="/admin/queryInformation?category=2">猫咪用品</a></li>
+                            <li><a href="/admin/queryInformation?category=3">萌宠周边</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/admin/activity" class="iq-waves-effect"><i
+                                class="ri-account-circle-fill"></i><span>发布活动</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/queryOrder" class="iq-waves-effect"><i
+                                class="ri-order-play-fill"></i><span>订单管理</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-bar-chart-2-fill"></i><span>账号管理</span><i
+                                class="ri-user-2-fill iq-arrow-right"></i></a>
+                        <ul class="iq-submenu">
+                            <li><a href="/admin/queryAdmin">管理账号</a></li>
+                            <li><a href="/admin/queryUser">用户账号</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-3"></div>
+        </div>
+    </div>
+</div>
+<!--管理端-->
+<!--右侧顶部标题栏-->
+<div th:fragment="main-header-admin">
+    <div class="iq-top-navbar">
+        <div class="iq-navbar-custom">
+
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <div class="iq-search-bar">
+                    <h3>萌多宠物用品网上销售系统</h3>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                </div>
+                <ul class="navbar-list">
+                    <li>
+                        <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+                            <div class="caption">
+                                <h6 class="mb-0 line-height"><span sec:authentication="principal.username"></span></h6>
+                                <span class="font-size-12">管理员</span>
+                            </div>
+                        </a>
+                        <div class="iq-sub-dropdown iq-user-dropdown">
+                            <div class="iq-card shadow-none m-0">
+                                <div class="iq-card-body p-0 ">
+                                    <div class="bg-primary p-3">
+                                        <h5 class="mb-0 text-white line-height">你好-<span sec:authentication="principal.username"></span></h5>
+                                    </div>
+                                    <a href="/admin/mine" class="iq-sub-card iq-bg-primary-hover">
+                                        <div class="media align-items-center">
+                                            <div class="rounded iq-card-icon iq-bg-primary">
+                                                <i class="ri-file-user-line"></i>
+                                            </div>
+                                            <div class="media-body ml-3">
+                                                <h6 class="mb-0 ">个人中心</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="d-inline-block w-100 text-center p-3">
+                                        <a class="bg-primary iq-sign-btn" href="/logout" role="button">退出登录<i
+                                                class="ri-login-box-line ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!--管理端-->
+<!--右侧顶部标题栏-->
+<div th:fragment="footer-admin">
+    <footer class="bg-white iq-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-right">
+                    2022 @<a href="#">萌多宠物用品网上销售系统</a> 版权所有
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

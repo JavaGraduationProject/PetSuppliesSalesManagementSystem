@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords"
+          content="bootstrap admin template, admin template ,admin panel template ,bootstrap 4 admin template ,bootstrap admin ,admin dashboard template ,bootstrap admin panel ,bitcoin dashboard ,crypto dashboard ,btc dashboard ,cryptocurrency dashboard ,bitcoin template ,cryptocurrency template ,crypto template ,cryptocurrency dashboard template ,cryptocurrency admin template ,crypto admin template ,btconline dashboard ,ryptocurrency dashboard template ,crypto admin template ,crypto trading dashboard ,cryptocurrency admin template "/>
+
+    <title>萌多宠物用品网上销售系统</title>
+    <link rel="stylesheet" href="/front/css/style.css">
+    <script src="/front/js/echarts.min.js"></script>
+</head>
+<body>
+<div id="loading">
+    <div id="loading-center"></div>
+</div>
+<div class="wrapper">
+
+    <!--左侧导航栏-->
+    <div th:include="template :: main-sidebar-admin"></div>
+
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+
+        <div th:include="template :: main-header-admin"></div>
+
+        <div class="container-fluid">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">发布活动</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body" th:if="${!result.isDelete}">
+                    <san style="font-size: 24px;margin-left: 50px" th:text="${result.info}"></san>
+                </div>
+                <div class="iq-card-body" th:if="${result.isDelete}">
+                    <san style="font-size: 36px;color: red;margin-left: 50px">暂无活动</san>
+                </div>
+                <div class="iq-card-body">
+                    <button style="margin-left: 50px" class="btn btn-success"
+                            th:onclick="showDialog()">发布活动
+                    </button>
+                    <a href="/admin/deleteActivity" th:if="${!result.isDelete}" style="margin-left: 50px"
+                       class="btn btn-danger">删除活动</a>
+                </div>
+            </div>
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
+                 class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">发布活动</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form">
+                                <div class="d-flex">
+                                    <label style="width: 80px">活动</label>
+                                    <input type="text" id="info" name="info" placeholder="请输入活动内容"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                            <button class="btn btn-primary" type="button" onclick="SubmitUserAcount()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:include="template :: footer-admin"></div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showDialog() {
+        $('#myModal').modal('show')
+    }
+
+    function SubmitUserAcount() {
+        var formData = $("#form").serialize()
+        $.ajax({
+            type: "POST",
+            url: "/admin/addActivity",
+            data: formData,
+            success: function (data) {
+                $('#myModal').modal('hide')
+                alert('发布成功')
+                location.href = '/admin/activity'
+            }
+        });
+    }
+</script>
+
+<script src="/front/js/jquery.min.js" type="text/javascript"></script>
+<script src="/front/js/jquery.min.js"></script>
+<script src="/front/js/bootstrap.min.js"></script>
+<script src="/front/js/smooth-scrollbar.js"></script>
+<script src="/front/js/custom.js"></script>
+<script src="/front/laydate/laydate.js"></script>
+<script>
+    lay('#version').html('-v' + laydate.v);
+    laydate.render({
+        elem: '#date'
+        , range: true
+        , theme: '#2c9eae'
+    });
+</script>
+</body>
+</html>

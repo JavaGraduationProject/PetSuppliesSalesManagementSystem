@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords"
+          content="bootstrap admin template, admin template ,admin panel template ,bootstrap 4 admin template ,bootstrap admin ,admin dashboard template ,bootstrap admin panel ,bitcoin dashboard ,crypto dashboard ,btc dashboard ,cryptocurrency dashboard ,bitcoin template ,cryptocurrency template ,crypto template ,cryptocurrency dashboard template ,cryptocurrency admin template ,crypto admin template ,btconline dashboard ,ryptocurrency dashboard template ,crypto admin template ,crypto trading dashboard ,cryptocurrency admin template "/>
+
+    <title>萌多宠物用品网上销售系统</title>
+    <link rel="stylesheet" href="/front/css/style.css">
+</head>
+<body>
+<div id="loading">
+    <div id="loading-center"></div>
+</div>
+<div class="wrapper">
+
+    <!--左侧导航栏-->
+    <div th:include="template :: main-sidebar-admin"></div>
+
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+
+        <div th:include="template :: main-header-admin"></div>
+
+        <div class="container-fluid">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">个人中心</h4>
+                    </div>
+                </div>
+                <div class="iq-card-body">
+                    <div class="inputbox" style="width: 100%; max-width: 1000px; margin: 0 auto;">
+                        <ul class="row">
+                            <li class="col-md-9">
+                                <ul class="row" id="ul">
+                                    <li class="col-md-12">
+                                        <h5 class="mt-2">用户名</h5>
+                                        <fieldset class="form-group">
+                                            <input type="text" class="form-control" name="username" placeholder="请输入姓名"
+                                                   th:value="${result.username}">
+                                        </fieldset>
+                                    </li>
+
+                                    <li class="col-md-12">
+                                        <h5 class="mt-2">地址</h5>
+                                        <fieldset class="form-group">
+                                            <input type="number" class="form-control" name="address" placeholder="请输入地址"
+                                                   th:value="${result.address}">
+                                        </fieldset>
+                                    </li>
+                                    <li class="col-md-12">
+                                        <h5 class="mt-2">手机号</h5>
+                                        <fieldset class="form-group">
+                                            <input type="number" class="form-control" name="phone" placeholder="请输入手机号码"
+                                                   th:value="${result.phone}">
+                                        </fieldset>
+                                    </li>
+                                    <li class="col-md-12">
+                                        <h5 class="mt-2">邮箱</h5>
+                                        <fieldset class="form-group">
+                                            <input type="text" class="form-control" name="email" placeholder="请输入邮箱"
+                                                   th:value="${result.email}">
+                                        </fieldset>
+                                    </li>
+                                    <li class="col-md-12">
+                                        <h5 class="mt-2">密码</h5>
+                                        <fieldset class="form-group">
+                                            <input type="password" class="form-control" name="password"
+                                                   placeholder="******" value="">
+                                        </fieldset>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="text-center mt-2" id="divBtn">
+                        <button class="btn btn-primary" th:onclick="showDialog([[${result.userId}]],[[${result.username}]],[[${result.address}]],[[${result.phone}]],[[${result.email}]])">修改信息</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
+                 class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">管理账号</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form">
+                                <input type="hidden" id="userId2" name="userId">
+                                <div class="d-flex">
+                                    <label style="width: 80px">用户名</label>
+                                    <input type="text" id="username2" name="username" placeholder="请输入用户名（1~15位）"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                                <br>
+                                <div class="d-flex">
+                                    <label style="width: 80px">密码</label>
+                                    <input type="password" id="password" name="password"
+                                           placeholder="请输入密码（6~18位数字或者字母）"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                                <br>
+                                <div class="d-flex">
+                                    <label style="width: 80px">重复密码</label>
+                                    <input type="password" id="password_2" name="password_2"
+                                           placeholder="请输入重复密码（与密码保持一致）"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                                <br>
+                                <div class="d-flex">
+                                    <label style="width: 80px">地址</label>
+                                    <input type="text" id="address2" name="address" placeholder="请输入地址"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                                <br>
+                                <div class="d-flex">
+                                    <label style="width: 80px">电话</label>
+                                    <input type="number" id="phone2" name="phone" placeholder="请输入电话（11位数字）"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                                <br>
+                                <div class="d-flex">
+                                    <label style="width: 80px">邮箱</label>
+                                    <input type="text" id="email2" name="email" placeholder="请输入邮箱"
+                                           autocomplete="off" class="form-control placeholder-no-fix">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                            <button class="btn btn-primary" type="button" onclick="SubmitUserAcount()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
+            <div th:include="template :: footer-admin"></div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showDialog(i, u,a,p,e) {
+        $('#myModal').modal('show')
+        $("#userId2").val(i);
+        $("#username2").val(u);
+        $("#address2").val(a);
+        $("#phone2").val(p);
+        $("#email2").val(e);
+    }
+    function SubmitUserAcount() {
+        var formData = $("#form").serialize()
+        $.ajax({
+            type: "POST",
+            url: "/admin/updateAccount",
+            data: formData,
+            success: function (data) {
+                alert(data.message)
+                if (data.code === 200){
+                    location.href = "/logout"
+                }
+            }
+        });
+    }
+</script>
+
+<script src="/front/js/jquery.min.js" type="text/javascript"></script>
+<script src="/front/js/jquery.min.js"></script>
+<script src="/front/js/bootstrap.min.js"></script>
+<script src="/front/js/smooth-scrollbar.js"></script>
+<script src="/front/js/custom.js"></script>
+<script src="/front/laydate/laydate.js"></script>
+<script>
+    lay('#version').html('-v' + laydate.v);
+    laydate.render({
+        elem: '#date'
+        , range: true
+        , theme: '#2c9eae'
+    });
+</script>
+</body>
+</html>
